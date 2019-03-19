@@ -1,0 +1,12 @@
+.vscodebin
+bin
+debug
+netcoreapp2.1
+obj
+*.db
+*.suo
+*.ide
+*.ide-shm
+*.pdb
+*.dll
+*.razor.json

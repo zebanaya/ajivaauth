@@ -1,9 +1,14 @@
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using ajivaauth.api.Data;
 using ajivaauth.api.Dtos;
 using ajivaauth.api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ajivaauth.api.Controllers
 {
@@ -12,9 +17,12 @@ namespace ajivaauth.api.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationRepository _repo;
-        public AuthenticationController(IAuthenticationRepository repo)
+        private IConfiguration _config { get; }
+
+        public AuthenticationController(IAuthenticationRepository repo, IConfiguration config)
         {
             _repo = repo;
+            _config = config;
         }
 
         [HttpPost("register")]
@@ -32,7 +40,7 @@ namespace ajivaauth.api.Controllers
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);            
+            return StatusCode(201);
         }
 
         [HttpPost("login")]
@@ -42,12 +50,28 @@ namespace ajivaauth.api.Controllers
 
             if (userFromRepo == null)
                 return Unauthorized();
-            
+
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString())
-            }
-            
+                new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
+                new Claim(ClaimTypes.Name, userFromRepo.Username)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return Ok(new { token = tokenHandler.WriteToken(token) });
         }
     }
 }
