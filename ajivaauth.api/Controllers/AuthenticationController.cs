@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ajivaauth.api.Data;
 using ajivaauth.api.Dtos;
 using ajivaauth.api.Models;
+using ajivaauth.api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -16,45 +17,37 @@ namespace ajivaauth.api.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationRepository _repo;
-        private IConfiguration _config { get; }
+        public readonly IAuthenticationService _authService;
+        public readonly IConfiguration _config;
 
-        public AuthenticationController(IAuthenticationRepository repo, IConfiguration config)
+        public AuthenticationController(IAuthenticationService authService, IConfiguration config)
         {
-            _repo = repo;
+            _authService = authService;
             _config = config;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
+        public async Task<IActionResult> Register(UserDTO userDTO)
         {
-            userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
+            var userFromDB = await _authService.Register(userDTO);
 
-            if (await _repo.UserExists(userForRegisterDto.Username))
+            if (userFromDB == null)
                 return BadRequest("Username already exists");
-
-            var userToCreate = new User
-            {
-                Username = userForRegisterDto.Username
-            };
-
-            var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
-
-            return StatusCode(201);
+            return Ok(userFromDB);
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
+        public async Task<IActionResult> Login(UserDTO userDTO)
         {
-            var userFromRepo = await _repo.Login(userForLoginDto.Username, userForLoginDto.Password);
+            var userToLogin = await _authService.Login(userDTO);
 
-            if (userFromRepo == null)
+            if (userToLogin == null)
                 return Unauthorized();
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Username)
+                new Claim(ClaimTypes.NameIdentifier, userToLogin.Id.ToString()),
+                new Claim(ClaimTypes.Name, userToLogin.Username)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
