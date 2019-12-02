@@ -7,6 +7,7 @@ using ajivaauth.api.Data;
 using ajivaauth.api.Dtos;
 using ajivaauth.api.Models;
 using ajivaauth.api.Services.Interfaces;
+using AjivaAuth.Core.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

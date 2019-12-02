@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using ajivaauth.api.Data;
 using ajivaauth.api.Models;
 using ajivaauth.api.Repo.interfaces;
+using AjivaAuth.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ajivaauth.api.Repo

@@ -3,6 +3,8 @@ using ajivaauth.api.Dtos;
 using ajivaauth.api.Models;
 using ajivaauth.api.Repo.interfaces;
 using ajivaauth.api.Services.Interfaces;
+using AjivaAuth.Core.DTOs;
+using AjivaAuth.Core.Models;
 
 namespace ajivaauth.api.Services
 {
