@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AjivaAuth.Core\AjivaAuth.Core.csproj" />
+    <ProjectReference Include="..\AjivaAuth.Repo\AjivaAuth.Repo.csproj" />
+  </ItemGroup>
+
+</Project>

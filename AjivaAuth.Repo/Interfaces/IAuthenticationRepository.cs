@@ -1,8 +1,7 @@
 using System.Threading.Tasks;
-using ajivaauth.api.Models;
 using AjivaAuth.Core.Models;
 
-namespace ajivaauth.api.Repo.interfaces
+namespace AjivaAuth.Repo.interfaces
 {
     public interface IAuthenticationRepository
     {

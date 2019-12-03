@@ -1,12 +1,10 @@
 using System.Threading.Tasks;
-using ajivaauth.api.Dtos;
-using ajivaauth.api.Models;
-using ajivaauth.api.Repo.interfaces;
-using ajivaauth.api.Services.Interfaces;
 using AjivaAuth.Core.DTOs;
 using AjivaAuth.Core.Models;
+using AjivaAuth.Repo.interfaces;
+using AjivaAuth.Services.Interfaces;
 
-namespace ajivaauth.api.Services
+namespace AjivaAuth.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
