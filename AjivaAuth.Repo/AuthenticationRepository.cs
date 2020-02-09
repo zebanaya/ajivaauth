@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
-using ajivaauth.api.Data;
-using ajivaauth.api.Models;
-using ajivaauth.api.Repo.interfaces;
+using System.Linq;
+using AjivaAuth.Core.Data;
 using AjivaAuth.Core.Models;
+using AjivaAuth.Repo.interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace ajivaauth.api.Repo
+namespace AjivaAuth.Repo
 {
     public class AuthenticationRepository : IAuthenticationRepository
     {

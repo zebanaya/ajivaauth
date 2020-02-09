@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ajivaauth.api", "ajivaauth.api.csproj", "{92E58D41-A1A5-4D04-A7F3-933F029BEC20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjivaAuth.Core", "..\AjivaAuth.Core\AjivaAuth.Core.csproj", "{3DA57FE5-442D-4622-A006-27D7FD19E3BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AjivaAuth.Core", "..\AjivaAuth.Core\AjivaAuth.Core.csproj", "{3DA57FE5-442D-4622-A006-27D7FD19E3BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjivaAuth.Services", "..\AjivaAuth.Services\AjivaAuth.Services.csproj", "{703F8B32-2CD6-4706-A82A-E99477958FDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjivaAuth.Repo", "..\AjivaAuth.Repo\AjivaAuth.Repo.csproj", "{47DA1162-26BB-406F-ACEC-5327EC70560D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{3DA57FE5-442D-4622-A006-27D7FD19E3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DA57FE5-442D-4622-A006-27D7FD19E3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DA57FE5-442D-4622-A006-27D7FD19E3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{703F8B32-2CD6-4706-A82A-E99477958FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{703F8B32-2CD6-4706-A82A-E99477958FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{703F8B32-2CD6-4706-A82A-E99477958FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{703F8B32-2CD6-4706-A82A-E99477958FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47DA1162-26BB-406F-ACEC-5327EC70560D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47DA1162-26BB-406F-ACEC-5327EC70560D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47DA1162-26BB-406F-ACEC-5327EC70560D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47DA1162-26BB-406F-ACEC-5327EC70560D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
