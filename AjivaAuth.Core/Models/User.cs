@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AjivaAuth.Core.Models
 {
-    public class User : AjivaBase.Core.Models.User
+    public class User : AjivaBase.Standard.Models.User
     {
     }
 }
