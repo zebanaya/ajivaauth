@@ -64,5 +64,11 @@ namespace ajivaauth.api.Controllers
 
             return Ok(new { token = tokenHandler.WriteToken(token) });
         }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout(string username)
+        {
+            return Ok("User Is Logged Out");
+        }
     }
 }
